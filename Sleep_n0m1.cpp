@@ -123,6 +123,16 @@ void Sleep::sleepPinInterrupt(int interruptPin,int mode) {
 	detachInterrupt(intNum);
 }
 
+size_t Sleep::printTo(Print& p) const{
+  size_t res = 0;
+  res += p.print(F("sM=x"));    res += p.print(sleepMode_, HEX);
+  res += p.print(F(", tS="));   res += p.print(timeSleep, DEC);
+  res += p.print(F(", cv="));   res += p.print(calibv, 6);
+  res += p.print(F(", ic="));   res += p.print(isrcalled, DEC);
+  res += p.print(F(", scc="));  res += p.print(sleepCycleCount, DEC);
+  res += p.print(F(", sci="));  res += p.print(sleepCycleInterval, DEC);
+  return res;
+}
 
 /********************************************************************
 *

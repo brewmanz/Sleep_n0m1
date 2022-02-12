@@ -26,7 +26,6 @@
 #define SLEEP_H
 
 
-
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 #if defined(ARDUINO) && ARDUINO >= 100
@@ -36,9 +35,9 @@
 #endif
 
 extern "C" void WDT_vect(void) __attribute__ ((signal));
-extern "C" void sleepHandler(void) __attribute__ ((signal));
+extern "C" void sleepHandler(void) __attribute__ (());
 
-class Sleep {
+class Sleep : public Printable {
 
 public:
 
@@ -141,9 +140,7 @@ Sleep();
 	//------------------------------------------------------
 	void sleepPinInterrupt(int interrupt,int mode);
 
-
-
-
+  virtual size_t printTo(Print& p) const;
 
 private:
 
